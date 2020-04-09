@@ -1,1 +1,71 @@
 # lodash-note
+数组相关：
+1、_.chunk(array, [size=1])
+将数组（array）拆分成多个 size 长度的区块，并将这些区块组成一个新数组。 如果array 无法被分割成全部等长的区块，那么最后剩余的元素将组成一个区块。
+
+参数
+array (Array): 需要处理的数组
+[size=1] (number): 每个数组区块的长度
+
+返回
+(Array): 返回一个包含拆分区块的新数组（注：相当于一个二维数组）。
+
+例子
+_.chunk(['a', 'b', 'c', 'd'], 2);
+// => [['a', 'b'], ['c', 'd']]
+ 
+_.chunk(['a', 'b', 'c', 'd'], 3);
+// => [['a', 'b', 'c'], ['d']]
+
+用法感想：chuck用来按长度将数组拆分为一个对应的二维数据，最后不足时，最后剩余的元素作为二维数组的最后一个元素。
+
+2、_.zipWith([arrays], [iteratee=_.identity])
+这个方法类似于_.zip，不同之处在于它接受一个 iteratee（迭代函数），来 指定分组的值应该如何被组合。 该iteratee调用每个组的元素： (...group).
+
+参数
+[arrays] (...Array): 要处理的数组。
+[iteratee=_.identity] (Function): 函数用来组合分组的值。
+
+例子
+_.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+  return a + b + c;
+});
+// => [111, 222]
+
+用法感想：zipWith可以将多个数组长度相同的对象数据合并成一个数据。
+
+3、_.xorWith([arrays], [comparator])
+该方法是像 _.xor，除了它接受一个 comparator ，以调用比较数组的元素。 comparator 调用2个参数：(arrVal, othVal).
+
+参数
+[arrays] (...Array): 要检查的数组。
+[comparator] (Function): 调用每一个元素的比较函数。
+
+返回
+(Array): 返回过滤值后的新数组。
+
+例子
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+_.xorWith(objects, others, _.isEqual);
+// => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+用法感想：xorWith可以将多个数组通过comparator，取出相同元素组成新的数组
+
+4、_.take(array, [n=1])
+创建一个数组切片，从array数组的起始元素开始提取n个元素。
+
+参数
+array (Array): 要检索的数组。
+[n=1] (number): 要提取的元素个数。
+
+返回
+(Array): 返回 array 数组的切片（从起始元素开始n个元素）。
+
+例子
+_.take([1, 2, 3]);
+// => [1]
+ 
+_.take([1, 2, 3], 2);
+// => [1, 2]
+
+用法感想：take可以将一个数组从index 0 开始，取出指定个数的项，组成新的数组。
