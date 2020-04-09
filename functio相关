@@ -1,0 +1,30 @@
+1、_.before(n, func)
+创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
+
+参数
+n (number): 超过多少次不再调用func（注：限制调用func 的次数）。
+func (Function): 限制执行的函数。
+
+返回
+(Function): 返回新的限定函数。
+
+例子
+jQuery(element).on('click', _.before(5, addContactToList));
+// => allows adding up to 4 contacts to the list
+
+用法感想：限制一个方法最多能调用的次数，超过则无法调用。
+
+2、_.after(n, func)
+_.before的反向函数;此方法创建一个函数，当他被调用n或更多次之后将马上触发func 。
+
+参数
+n (number): func 方法应该在调用多少次后才执行。
+func (Function): 用来限定的函数。
+
+返回
+(Function): 返回新的限定函数。
+
+用法感想：创建一个函数，在被调用n次后，触发func。之前做一个单个一次次上传文件的微信永久素材的，也许可以通用这个方法改下。
+
+3、
+
