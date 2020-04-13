@@ -42,5 +42,147 @@ console.log(deep[0] === objects[0]);
 // => false
 用法感想：深拷贝
 
+4、_.isEmpty(value)
+检查 value 是否为一个空对象，集合，映射或者set。 判断的依据是除非是有枚举属性的对象，length 大于 0 的 arguments object, array, string 或类jquery选择器。
+对象如果被认为为空，那么他们没有自己的可枚举属性的对象。
+类数组值，比如arguments对象，array，buffer，string或者类jQuery集合的length 为 0，被认为是空。类似的，map（映射）和set 的size 为 0，被认为是空。
+
+参数
+value (*): 要检查的值。
+返回
+(boolean): 如果 value 为空，那么返回 true，否则返回 false。
+
+例子
+_.isEmpty(null);
+// => true
+ 
+_.isEmpty(true);
+// => true
+ 
+_.isEmpty(1);
+// => true
+ 
+_.isEmpty([1, 2, 3]);
+// => false
+ 
+_.isEmpty({ 'a': 1 });
+// => false
+
+用法感想：这个判断可以用来判断对象是否是空对象，数组是否是空数组。
+之前的写法，obj && Object.keys(obj).length > 0 和 arr && arr.length > 0 可以直接改为 _.isEmpty(value)
+
+5、_.isEqual(value, other)
+执行深比较来确定两者的值是否相等。
+**注意: **这个方法支持比较 arrays, array buffers, booleans, date objects, error objects, maps, numbers, 
+Object objects, regexes, sets, strings, symbols, 以及 typed arrays. Object 对象值比较自身的属性，不包括继承的和可枚举的属性。
+不支持函数和DOM节点比较。
+
+参数
+value (*): 用来比较的值。
+other (*): 另一个用来比较的值。
+返回
+(boolean): 如果 两个值完全相同，那么返回 true，否则返回 false。
+
+例子
+var object = { 'a': 1 };
+var other = { 'a': 1 };
+ 
+_.isEqual(object, other);
+// => true
+ 
+object === other;
+// => false
+
+用法感想：这个判断可以用来判断两个复杂对象比较是否相同
+之前的写法，JSON.stringify(a) ==== JSON.stringify(b) 可以改为_.isEqual(a, b)
+
+6、_.isEqualWith(value, other, [customizer])
+这个方法类似 _.isEqual。 除了它接受一个 customizer 用来定制比较值。 如果 customizer 返回 undefined 将会比较处理方法代替。 
+customizer 会传入6个参数：(objValue, othValue [, index|key, object, other, stack])
+
+参数
+value (*): 用来比较的值。
+other (*): 另一个用来比较的值。
+[customizer] (Function): 用来定制比较值的函数。
+返回
+(boolean): 如果 两个值完全相同，那么返回 true，否则返回 false。
+
+例子
+function isGreeting(value) {
+  return /^h(?:i|ello)$/.test(value);
+}
+ 
+function customizer(objValue, othValue) {
+  if (isGreeting(objValue) && isGreeting(othValue)) {
+    return true;
+  }
+}
+ 
+var array = ['hello', 'goodbye'];
+var other = ['hi', 'goodbye'];
+ 
+_.isEqualWith(array, other, customizer);
+// => true
+
+用法感想：可以自定义比较器判断两个参数是否相同，感觉华而不实。
+
+7、_.isMatch(object, source)
+执行一个深度比较，来确定 object 是否含有和 source 完全相等的属性值。
+注意: 当source为偏应用时，这种方法等价于_.matches。（注：关于偏应用大家可以自己到google上搜索一下）。
+偏应用比较匹配空数组和空对象source值分别针对任何数组或对象的价值。在_.isEqual中查看支持的值比较列表。
+
+
+参数
+object (Object): 要检查的对象。
+source (Object): 属性值相匹配的对象。
+返回
+(boolean): 如果object匹配，那么返回 true，否则返回 false。
+
+例子
+var object = { 'a': 1, 'b': 2 };
+ 
+_.isMatch(object, { 'b': 2 });
+// => true
+ 
+_.isMatch(object, { 'b': 1 });
+// => false
+
+用法感想：判断前一个对象是否包含第二参数的全部属性，是像isEqual那样判断方式，可以用来判断数组和对象。
+
+8、_.isNil(value)
+检查 value 是否是 null 或者 undefined。
+
+参数
+value (*): 要检查的值。
+返回
+(boolean): 如果 value 为null 或 undefined，那么返回 true，否则返回 false。
+
+例子
+_.isNil(null);
+// => true
+ 
+_.isNil(void 0);
+// => true
+ 
+_.isNil(NaN);
+// => false
+
+用法感想：判断value是否是null或者undefined，!_.isNil和value?相比，0和''返回的是false.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
