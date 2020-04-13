@@ -47,7 +47,7 @@ var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
 var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
 _.xorWith(objects, others, _.isEqual);
 // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
-用法感想：xorWith可以将多个数组通过comparator，取出相同元素组成新的数组
+用法感想：xorWith可以将多个数组通过comparator，取出取出不重复的元素组成新的数组
 
 4、_.take(array, [n=1])
 创建一个数组切片，从array数组的起始元素开始提取n个元素。
@@ -68,7 +68,7 @@ _.take([1, 2, 3], 2);
 
 用法感想：take可以将一个数组从index 0 开始，取出指定个数的项，组成新的数组。
 
-6、_.keyBy(collection, [iteratee=_.identity])
+5、_.keyBy(collection, [iteratee=_.identity])
 创建一个对象组成， key（键） 是 collection（集合）中的每个元素经过 iteratee（迭代函数） 处理后返回的结果。
 每个 key（键）对应的值是生成key（键）的最后一个元素。iteratee（迭代函数）调用1个参数：(value)。
 
