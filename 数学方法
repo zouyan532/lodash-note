@@ -1,0 +1,51 @@
+1、ceil、floor、round
+分别是向上舍入，向下舍入，四舍五入
+以ceil为例：_.ceil(number, [precision=0])
+根据 precision（精度） 向上舍入 number。（注： precision（精度）可以理解为保留几位小数。）
+
+参数
+number (number): 要向上舍入的值。
+[precision=0] (number): 向上舍入的的精度。
+返回
+(number): 返回向上舍入的值。
+
+例子
+_ cell                          _.floor                      _.round
+_.ceil(4.006);                  _.floor(4.006);              _.floor(4.006);
+// => 5                         // => 4
+ 
+_.ceil(6.004, 2);               _.floor(6.004,2);            _.round(4.004, 2);
+// => 6.01                      // => 6.00                    // => 6.00
+ 
+_.ceil(6040, -2);               _.floor(6040, -2);           _.round(4060, -2);
+// => 6100                      // 6000                      // 6100
+
+用法感想：这个方法可以向上舍入取整（不局限于小数）
+
+2、maxBy,minBy,meanBy,sumBy
+分别是取出数组的最大值、最小值、平均值,合计
+
+以maxBy为例： _.maxBy(array, [iteratee=_.identity])
+这个方法类似 _.max 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+
+参数
+array (Array): 要迭代的数组。
+[iteratee=_.identity] (Function): 调用每个元素的迭代函数。
+返回
+(*): 返回最大的值。
+
+例子
+var objects = [{ 'n': 1 }, { 'n': 2 }];
+ 
+_.maxBy(objects, function(o) { return o.n; });
+// => { 'n': 2 }
+ 
+// The `_.property` iteratee shorthand.
+_.maxBy(objects, 'n');
+// => { 'n': 2 }
+
+用法感想：max可以直接取出最大的一项，maxBy第二参数可以传入用哪个字段进行比较。
+
+
+
+
